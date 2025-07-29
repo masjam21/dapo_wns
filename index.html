@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 	<head>
 		<meta charset="UTF-8" />
@@ -6,168 +6,183 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://cdn.tailwindcss.com"></script>
 		<style>
-			/* A little custom style for the scrollbar to match the theme */
+			/* Custom scrollbar style */
 			::-webkit-scrollbar {
-				inline-size: 8px;
+				width: 8px;
 			}
 			::-webkit-scrollbar-track {
-				background: #2d3748; /* gray-800 */
-			}
+				background: #1f2937;
+			} /* gray-800 */
 			::-webkit-scrollbar-thumb {
-				background: #718096; /* gray-600 */
+				background: #4b5563;
 				border-radius: 10px;
-			}
+			} /* gray-600 */
 			::-webkit-scrollbar-thumb:hover {
-				background: #a0aec0; /* gray-500 */
-			}
-			/* Make sure hidden options don't affect layout */
+				background: #6b7280;
+			} /* gray-500 */
+
+			/* Ensure hidden options in select don't show up */
 			option[style*="display: none"] {
 				display: none;
 			}
+
+			/* Style for a smooth scroll on the photo slider */
+			#foto-slider {
+				scroll-behavior: smooth;
+			}
 		</style>
 	</head>
-	<body class="bg-gray-800 font-sans flex items-center justify-center min-h-screen p-4">
-		<main class="flex flex-col lg:flex-row max-w-6xl w-full mx-auto bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
-			<div id="formulir" class="flex-1 p-6 md:p-8 text-white flex flex-col">
-				<img class="mx-auto h-12 lg:h-16 w-auto mb-4" src="https://dapo.kemendikdasmen.go.id/files/IMG_1112.PNG" alt="Logo Dapodik" />
+	<body class="bg-gray-900 font-sans text-white">
+		<div class="container mx-auto p-4">
+			<main class="flex flex-col lg:flex-row max-w-7xl w-full mx-auto bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-700">
+				<div id="formulir" class="w-full lg:w-4/10 p-6 md:p-8 text-white flex flex-col">
+					<img class="mx-auto h-12 lg:h-16 w-auto mb-4" src="https://dapo.kemendikdasmen.go.id/files/IMG_1112.PNG" alt="Logo Dapodik" />
+					<h2 class="text-2xl lg:text-3xl font-bold text-center mb-6">Form Kehadiran</h2>
+					<form id="form" class="flex flex-col h-full">
+						<div class="flex-grow">
+							<label for="nama" class="block mb-1 text-sm font-medium text-gray-300">Nama Lengkap</label>
+							<input
+								type="text"
+								name="nama"
+								id="nama"
+								placeholder="Masukkan nama Anda"
+								required
+								class="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-4"
+							/>
 
-				<h2 class="text-2xl lg:text-3xl font-bold text-center mb-6">Form Kehadiran</h2>
-				<form id="form" class="flex flex-col h-full">
-					<div class="flex-grow">
-						<label for="nama" class="block mb-1 text-sm font-medium text-gray-300">Nama Lengkap</label>
-						<input
-							type="text"
-							name="nama"
-							id="nama"
-							placeholder="Masukkan nama Anda"
-							required
-							class="bg-gray-800 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-4"
-						/>
+							<label for="searchSekolah" class="block mb-1 text-sm font-medium text-gray-300">Cari Sekolah</label>
+							<input
+								type="text"
+								id="searchSekolah"
+								onkeyup="filterSekolah()"
+								placeholder="Ketik untuk mencari sekolah..."
+								class="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-2"
+							/>
 
-						<label for="searchSekolah" class="block mb-1 text-sm font-medium text-gray-300">Cari Sekolah</label>
-						<input
-							type="text"
-							id="searchSekolah"
-							onkeyup="filterSekolah()"
-							placeholder="Ketik untuk mencari sekolah..."
-							class="bg-gray-800 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-2"
-						/>
+							<label for="sekolah" class="block mb-1 text-sm font-medium text-gray-300">Asal Sekolah</label>
+							<select name="sekolah" id="sekolah" required class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-4">
+								<option value="">-- Pilih Asal Sekolah --</option>
+								<option>SDN BALEHARJO WONOSARI</option>
+								<option>SDN DUWET WONOSARI</option>
+								<option>SDN GARI I WONOSARI</option>
+								<option>SDN GARI III WONOSARI</option>
+								<option>SDN JAMBE WONOSARI</option>
+								<option>SDN JERUKSARI WONOSARI</option>
+								<option>SDN KAJAR WONOSARI</option>
+								<option>SDN KAMAL WONOSARI</option>
+								<option>SDN KARANGREJEK I WONOSARI</option>
+								<option>SDN KARANGREJEK II WONOSARI</option>
+								<option>SDN KARANGTENGAH BARU WONOSARI</option>
+								<option>SDN KARANGTENGAH III WONOSARI</option>
+								<option>SDN KARANGTENGAH IV WONOSARI</option>
+								<option>SDN MULO II WONOSARI</option>
+								<option>SDN MULOBARU WONOSARI</option>
+								<option>SDN PIYAMAN I WONOSARI</option>
+								<option>SDN PIYAMAN II WONOSARI</option>
+								<option>SDN PIYAMAN III WONOSARI</option>
+								<option>SDN SELANG WONOSARI</option>
+								<option>SDN SENENG WONOSARI</option>
+								<option>SDN SINGKAR WONOSARI</option>
+								<option>SDN SIRAMAN I WONOSARI</option>
+								<option>SDN SIRAMAN II WONOSARI</option>
+								<option>SDN SIRAMAN III WONOSARI</option>
+								<option>SDN SOKA WONOSARI</option>
+								<option>SDN WONOSARI BARU WONOSARI</option>
+								<option>SDN WONOSARI I WONOSARI</option>
+								<option>SDN WONOSARI II WONOSARI</option>
+								<option>SDN WONOSARI IV WONOSARI</option>
+								<option>SDN WONOSARI VI WONOSARI</option>
+								<option>SD BOPKRI WONOSARI II</option>
+								<option>SD ISLAM AL AZHAR 59 WONOSARI</option>
+								<option>SD IT TUNAS MULIA WONOSARI</option>
+								<option>SD KANISIUS PULUTAN WONOSARI</option>
+								<option>SD KANISIUS WONOSARI II WONOSARI</option>
+								<option>SD MUHAMMADIYAH AL MUJAHIDIN WONOSARI</option>
+								<option>SD MUHAMMADIYAH KARANGTENGAH WONOSARI</option>
+								<option>SD MUHAMMADIYAH PIYAMAN WONOSARI</option>
+								<option>SD MUHAMMADIYAH SIRAMAN WONOSARI</option>
+								<option>SD MUHAMMADIYAH WARENG WONOSARI</option>
+								<option>SD MUHAMMADIYAH WONOSARI</option>
+							</select>
+							<label for="signature" class="block mb-1 text-sm font-medium text-gray-300">Tanda Tangan</label>
+							<canvas id="signature" class="w-full h-32 bg-white rounded-lg border border-gray-600 mb-2"></canvas>
+							<button type="button" onclick="clearSignature()" class="w-full text-center text-sm text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg p-2 mb-4 transition-colors">Hapus Tanda Tangan</button>
+							<label for="fotoSelfie" class="block mb-1 text-sm font-medium text-gray-300">Upload Foto Selfie</label>
+							<input
+								type="file"
+								id="fotoSelfie"
+								accept="image/*"
+								capture="user"
+								required
+								class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-pink-500 file:text-white hover:file:bg-pink-600 mb-4 cursor-pointer"
+							/>
+						</div>
+						<div class="mt-auto">
+							<button
+								type="submit"
+								class="w-full text-white bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-800 font-bold rounded-lg text-sm px-5 py-3 text-center uppercase tracking-wider transition-all duration-300"
+							>
+								Kirim Kehadiran
+							</button>
+						</div>
+					</form>
+				</div>
 
-						<label for="sekolah" class="block mb-1 text-sm font-medium text-gray-300">Asal Sekolah</label>
-						<select name="sekolah" id="sekolah" required class="bg-gray-800 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-4">
-							<option value="">-- Pilih Asal Sekolah --</option>
-							<option>SDN BALEHARJO WONOSARI</option>
-							<option>SDN DUWET WONOSARI</option>
-							<option>SDN GARI I WONOSARI</option>
-							<option>SDN GARI III WONOSARI</option>
-							<option>SDN JAMBE WONOSARI</option>
-							<option>SDN JERUKSARI WONOSARI</option>
-							<option>SDN KAJAR WONOSARI</option>
-							<option>SDN KAMAL WONOSARI</option>
-							<option>SDN KARANGREJEK I WONOSARI</option>
-							<option>SDN KARANGREJEK II WONOSARI</option>
-							<option>SDN KARANGTENGAH BARU WONOSARI</option>
-							<option>SDN KARANGTENGAH III WONOSARI</option>
-							<option>SDN KARANGTENGAH IV WONOSARI</option>
-							<option>SDN MULO II WONOSARI</option>
-							<option>SDN MULOBARU WONOSARI</option>
-							<option>SDN PIYAMAN I WONOSARI</option>
-							<option>SDN PIYAMAN II WONOSARI</option>
-							<option>SDN PIYAMAN III WONOSARI</option>
-							<option>SDN SELANG WONOSARI</option>
-							<option>SDN SENENG WONOSARI</option>
-							<option>SDN SINGKAR WONOSARI</option>
-							<option>SDN SIRAMAN I WONOSARI</option>
-							<option>SDN SIRAMAN II WONOSARI</option>
-							<option>SDN SIRAMAN III WONOSARI</option>
-							<option>SDN SOKA WONOSARI</option>
-							<option>SDN WONOSARI BARU WONOSARI</option>
-							<option>SDN WONOSARI I WONOSARI</option>
-							<option>SDN WONOSARI II WONOSARI</option>
-							<option>SDN WONOSARI IV WONOSARI</option>
-							<option>SDN WONOSARI VI WONOSARI</option>
-							<option>SD BOPKRI WONOSARI II</option>
-							<option>SD ISLAM AL AZHAR 59 WONOSARI</option>
-							<option>SD IT TUNAS MULIA WONOSARI</option>
-							<option>SD KANISIUS PULUTAN WONOSARI</option>
-							<option>SD KANISIUS WONOSARI II WONOSARI</option>
-							<option>SD MUHAMMADIYAH AL MUJAHIDIN WONOSARI</option>
-							<option>SD MUHAMMADIYAH KARANGTENGAH WONOSARI</option>
-							<option>SD MUHAMMADIYAH PIYAMAN WONOSARI</option>
-							<option>SD MUHAMMADIYAH SIRAMAN WONOSARI</option>
-							<option>SD MUHAMMADIYAH WARENG WONOSARI</option>
-							<option>SD MUHAMMADIYAH WONOSARI</option>
-						</select>
-
-						<label for="signature" class="block mb-1 text-sm font-medium text-gray-300">Tanda Tangan</label>
-						<canvas id="signature" class="w-full h-32 bg-white rounded-lg border border-gray-600 mb-2"></canvas>
-						<button type="button" onclick="clearSignature()" class="w-full text-center text-sm text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg p-2 mb-4 transition-colors">Hapus Tanda Tangan</button>
-
-						<label for="fotoSelfie" class="block mb-1 text-sm font-medium text-gray-300">Upload Foto Selfie</label>
-						<input
-							type="file"
-							id="fotoSelfie"
-							accept="image/*"
-							required
-							class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-pink-500 file:text-white hover:file:bg-pink-600 mb-4 cursor-pointer"
-						/>
+				<div id="rekap" class="w-full lg:w-6/10 p-6 md:p-8 bg-gradient-to-br from-orange-500 to-pink-600 text-white flex flex-col">
+					<h3 class="text-2xl lg:text-3xl font-bold text-center mb-6">Data Kehadiran</h3>
+					<div class="relative overflow-auto shadow-md rounded-lg bg-white/10 backdrop-blur-sm flex-grow">
+						<table id="tabelRekap" class="w-full text-sm text-left">
+							<thead class="text-xs uppercase bg-white/20 sticky top-0">
+								<tr>
+									<th scope="col" class="px-6 py-3">Waktu</th>
+									<th scope="col" class="px-6 py-3">Nama</th>
+									<th scope="col" class="px-6 py-3">Sekolah</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
 					</div>
+				</div>
+			</main>
 
-					<div class="mt-auto">
-						<button
-							type="submit"
-							class="w-full text-white bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-800 font-bold rounded-lg text-sm px-5 py-3 text-center uppercase tracking-wider transition-all duration-300"
-						>
-							Kirim Kehadiran
-						</button>
-						<p id="status" class="text-center text-sm mt-4 text-green-400"></p>
-					</div>
-				</form>
+			<div id="foto-slider-container" class="mt-8 max-w-7xl w-full mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 border border-gray-700">
+				<h3 class="text-xl font-bold text-white mb-4 text-center">Galeri Foto Kehadiran</h3>
+				<div id="foto-slider" class="overflow-x-auto whitespace-nowrap pb-2"></div>
 			</div>
 
-			<div id="rekap" class="flex-1 p-6 md:p-8 bg-gradient-to-br from-orange-500 to-pink-600 text-white overflow-y-auto">
-				<h3 class="text-2xl lg:text-3xl font-bold text-center mb-6">Data Kehadiran</h3>
-				<div class="relative overflow-x-auto shadow-md rounded-lg bg-white/10 backdrop-blur-sm">
-					<table id="tabelRekap" class="w-full text-sm text-left">
-						<thead class="text-xs uppercase bg-white/20">
-							<tr>
-								<th scope="col" class="px-6 py-3">Waktu</th>
-								<th scope="col" class="px-6 py-3">Nama</th>
-								<th scope="col" class="px-6 py-3">Sekolah</th>
-								<th scope="col" class="px-6 py-3">Foto</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
+			<div id="popup-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+				<div class="bg-gray-700 rounded-2xl shadow-xl w-full max-w-md p-6 text-center border border-gray-600">
+					<h3 id="popup-title" class="text-2xl font-bold text-white mb-2"></h3>
+					<p id="popup-message" class="text-gray-300 mb-6"></p>
+					<button onclick="hidePopup()" class="bg-pink-600 text-white font-bold rounded-lg text-sm px-8 py-2.5 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-800">Tutup</button>
 				</div>
 			</div>
-		</main>
+		</div>
 
 		<script>
+			const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx_G9DpoAt1mv08oRwRg5M6uuaVwS2JZgtY_Ifxbq9sBlsSw5kyGAADRUbexFCRbXw-/exec";
+
 			const canvas = document.getElementById("signature");
 			const ctx = canvas.getContext("2d");
 			let drawing = false;
 
+			window.addEventListener("load", resizeCanvas);
+			window.addEventListener("resize", resizeCanvas);
 			function resizeCanvas() {
 				const ratio = Math.max(window.devicePixelRatio || 1, 1);
 				canvas.width = canvas.offsetWidth * ratio;
 				canvas.height = canvas.offsetHeight * ratio;
 				canvas.getContext("2d").scale(ratio, ratio);
 			}
-			window.addEventListener("load", resizeCanvas);
-			window.addEventListener("resize", resizeCanvas);
 
-			// Fungsi untuk filter sekolah
 			function filterSekolah() {
-				const input = document.getElementById("searchSekolah");
-				const filter = input.value.toUpperCase();
-				const select = document.getElementById("sekolah");
-				const options = select.getElementsByTagName("option");
-
+				const input = document.getElementById("searchSekolah"),
+					filter = input.value.toUpperCase(),
+					select = document.getElementById("sekolah"),
+					options = select.getElementsByTagName("option");
 				for (let i = 0; i < options.length; i++) {
 					const txtValue = options[i].textContent || options[i].innerText;
 					if (options[i].value === "") {
-						// Selalu tampilkan opsi "-- Pilih Asal Sekolah --"
 						options[i].style.display = "";
 					} else if (txtValue.toUpperCase().indexOf(filter) > -1) {
 						options[i].style.display = "";
@@ -183,19 +198,16 @@
 			canvas.addEventListener("touchstart", start, { passive: false });
 			canvas.addEventListener("touchend", end, { passive: false });
 			canvas.addEventListener("touchmove", draw, { passive: false });
-
 			function start(e) {
 				drawing = true;
 				ctx.beginPath();
 				ctx.moveTo(getX(e), getY(e));
 				e.preventDefault();
 			}
-
 			function end(e) {
 				drawing = false;
 				e.preventDefault();
 			}
-
 			function draw(e) {
 				if (!drawing) return;
 				ctx.lineWidth = 2;
@@ -205,65 +217,56 @@
 				ctx.stroke();
 				e.preventDefault();
 			}
-
 			function getX(e) {
-				const rect = canvas.getBoundingClientRect();
-				const scaleX = canvas.width / (rect.width * window.devicePixelRatio);
-				const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+				const rect = canvas.getBoundingClientRect(),
+					scaleX = canvas.width / (rect.width * window.devicePixelRatio),
+					clientX = e.touches ? e.touches[0].clientX : e.clientX;
 				return (clientX - rect.left) * scaleX;
 			}
-
 			function getY(e) {
-				const rect = canvas.getBoundingClientRect();
-				const scaleY = canvas.height / (rect.height * window.devicePixelRatio);
-				const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+				const rect = canvas.getBoundingClientRect(),
+					scaleY = canvas.height / (rect.height * window.devicePixelRatio),
+					clientY = e.touches ? e.touches[0].clientY : e.clientY;
 				return (clientY - rect.top) * scaleY;
 			}
-
 			function clearSignature() {
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 			}
 
+			function showPopup(title, message) {
+				document.getElementById("popup-title").textContent = title;
+				document.getElementById("popup-message").textContent = message;
+				document.getElementById("popup-modal").classList.remove("hidden");
+			}
+			function hidePopup() {
+				document.getElementById("popup-modal").classList.add("hidden");
+			}
+
 			document.getElementById("form").addEventListener("submit", async function (e) {
 				e.preventDefault();
-				const statusEl = document.getElementById("status");
-				statusEl.textContent = "Mengirim data...";
-
 				const nama = this.nama.value;
 				const sekolah = this.sekolah.value;
 				const tanda_tangan = canvas.toDataURL("image/png");
-
 				const fileInput = document.getElementById("fotoSelfie");
 				const file = fileInput.files[0];
-
-				if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some((channel) => channel !== 0)) {
-					// Signature is not empty
-				} else {
-					statusEl.textContent = "Tanda tangan tidak boleh kosong!";
-					statusEl.style.color = "rgb(248 113 113)"; // red-400
+				if (!ctx.getImageData(0, 0, canvas.width, canvas.height).data.some((channel) => channel !== 0)) {
+					showPopup("Perhatian!", "Tanda tangan tidak boleh kosong.");
 					return;
 				}
-
 				const reader = new FileReader();
 				reader.onloadend = function () {
 					const foto_selfie = reader.result;
-
-					fetch("https://script.google.com/macros/s/AKfycbwnvhzgBBY2W337C9Ybhp4h6ELLRmKAVx4E01mR_a9aMyx9ZyzNjz9_6frx6pSmKVez/exec", {
-						method: "POST",
-						body: JSON.stringify({ nama, sekolah, tanda_tangan, foto_selfie }),
-					})
+					fetch(GOOGLE_SCRIPT_URL, { method: "POST", body: JSON.stringify({ nama, sekolah, tanda_tangan, foto_selfie }) })
 						.then((res) => res.json())
 						.then((data) => {
-							statusEl.textContent = data.message;
-							statusEl.style.color = "rgb(74 222 128)"; // green-400
+							showPopup("Berhasil!", data.message || "Kehadiran berhasil dikirim!");
 							clearSignature();
 							document.getElementById("form").reset();
-							filterSekolah(); // Reset filter setelah submit
+							filterSekolah();
 							loadRekap();
 						})
 						.catch((err) => {
-							statusEl.textContent = "Error: Gagal mengirim data. Cek konsol.";
-							statusEl.style.color = "rgb(248 113 113)"; // red-400
+							showPopup("Terjadi Kesalahan", "Gagal mengirim data. Silakan coba lagi.");
 							console.error(err);
 						});
 				};
@@ -271,26 +274,50 @@
 			});
 
 			function loadRekap() {
-				fetch("https://script.google.com/macros/s/AKfycbwnvhzgBBY2W337C9Ybhp4h6ELLRmKAVx4E01mR_a9aMyx9ZyzNjz9_6frx6pSmKVez/exec")
+				fetch(`${GOOGLE_SCRIPT_URL}?v=${new Date().getTime()}`)
 					.then((res) => res.json())
 					.then((data) => {
 						const tbody = document.querySelector("#tabelRekap tbody");
-						tbody.innerHTML = ""; // Clear existing data
+						const fotoSlider = document.getElementById("foto-slider");
+						tbody.innerHTML = "";
+						fotoSlider.innerHTML = "";
 						if (data && Array.isArray(data)) {
 							data
 								.slice()
 								.reverse()
 								.forEach((row) => {
 									const tr = document.createElement("tr");
-									tr.className = "border-b border-white/20 hover:bg-white/20";
-									tr.innerHTML = `
-                                        <td class="px-6 py-4">${new Date(row["Timestamp"]).toLocaleString("id-ID")}</td>
-                                        <td class="px-6 py-4 font-medium whitespace-nowrap">${row["Nama Lengkap"]}</td>
-                                        <td class="px-6 py-4">${row["Asal Sekolah"]}</td>
-                                        <td class="px-6 py-4">
-                                            <img src="${row[" Foto Selfie"]}" alt="Foto Selfie" class="w-12 h-12 rounded-full object-cover">
-                                      `;
+									tr.className = "border-b border-gray-700 hover:bg-white/5";
+									tr.innerHTML = `<td class="px-6 py-4">${new Date(row["Timestamp"]).toLocaleString("id-ID", { dateStyle: "short", timeStyle: "short" })}</td><td class="px-6 py-4 font-medium whitespace-nowrap">${
+										row["Nama Lengkap"]
+									}</td><td class="px-6 py-4">${row["Asal Sekolah"]}</td>`;
 									tbody.appendChild(tr);
+
+									// if (row["Foto Selfie"] && typeof row["Foto Selfie"] === "string" && row["Foto Selfie"].startsWith("http")) {
+									// 	const imgContainer = document.createElement("div");
+									// 	imgContainer.className = "inline-block mr-4 rounded-lg overflow-hidden shadow-lg h-32 w-32 flex-shrink-0";
+									// 	const img = document.createElement("img");
+									// 	img.src = row["Foto Selfie"].replace("?usp=drivesdk", ""); // Membersihkan URL jika perlu
+									// 	img.alt = `Foto ${row["Nama Lengkap"]}`;
+									// 	img.className = "h-full w-full object-cover";
+									// 	imgContainer.appendChild(img);
+									// 	fotoSlider.appendChild(imgContainer);
+									// }
+									if (row["Foto Selfie"] && typeof row["Foto Selfie"] === "string") {
+										let url = row["Foto Selfie"];
+										if (url.includes("drive.google.com/file/d/")) {
+											const fileId = url.split("/d/")[1].split("/")[0];
+											url = `https://drive.google.com/uc?id=${fileId}`;
+										}
+										const imgContainer = document.createElement("div");
+										imgContainer.className = "inline-block mr-4 rounded-lg overflow-hidden shadow-lg h-32 w-32 flex-shrink-0";
+										const img = document.createElement("img");
+										img.src = url;
+										img.alt = `Foto ${row["Nama Lengkap"]}`;
+										img.className = "h-full w-full object-cover";
+										imgContainer.appendChild(img);
+										fotoSlider.appendChild(imgContainer);
+									}
 								});
 						}
 					})
@@ -300,218 +327,7 @@
 						tbody.innerHTML = `<tr><td colspan="3" class="text-center p-4">Gagal memuat data.</td></tr>`;
 					});
 			}
-
-			// Initial load
 			loadRekap();
 		</script>
 	</body>
-</html> -->
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <title>Formulir Kehadiran</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom scrollbar style */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1f2937; } /* gray-800 */
-        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 10px; } /* gray-600 */
-        ::-webkit-scrollbar-thumb:hover { background: #6b7280; } /* gray-500 */
-        
-        /* Ensure hidden options in select don't show up */
-        option[style*="display: none"] { display: none; }
-
-        /* Style for a smooth scroll on the photo slider */
-        #foto-slider {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-<body class="bg-gray-900 font-sans text-white">
-    <div class="container mx-auto p-4">
-        <main class="flex flex-col lg:flex-row max-w-7xl w-full mx-auto bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-700">
-            <div id="formulir" class="w-full lg:w-4/10 p-6 md:p-8 text-white flex flex-col">
-                <img class="mx-auto h-12 lg:h-16 w-auto mb-4" src="https://dapo.kemendikdasmen.go.id/files/IMG_1112.PNG" alt="Logo Dapodik" />
-                <h2 class="text-2xl lg:text-3xl font-bold text-center mb-6">Form Kehadiran</h2>
-                <form id="form" class="flex flex-col h-full">
-                    <div class="flex-grow">
-                        <label for="nama" class="block mb-1 text-sm font-medium text-gray-300">Nama Lengkap</label>
-                        <input type="text" name="nama" id="nama" placeholder="Masukkan nama Anda" required class="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-4" />
-                        
-                        <label for="searchSekolah" class="block mb-1 text-sm font-medium text-gray-300">Cari Sekolah</label>
-                        <input type="text" id="searchSekolah" onkeyup="filterSekolah()" placeholder="Ketik untuk mencari sekolah..." class="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-2" />
-                        
-                        <label for="sekolah" class="block mb-1 text-sm font-medium text-gray-300">Asal Sekolah</label>
-                        <select name="sekolah" id="sekolah" required class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 mb-4">
-                            <option value="">-- Pilih Asal Sekolah --</option>
-                            <option>SDN BALEHARJO WONOSARI</option>
-                            <option>SDN DUWET WONOSARI</option>
-                            <option>SDN GARI I WONOSARI</option>
-                            <option>SDN GARI III WONOSARI</option>
-                            <option>SDN JAMBE WONOSARI</option>
-                            <option>SDN JERUKSARI WONOSARI</option>
-                            <option>SDN KAJAR WONOSARI</option>
-                            <option>SDN KAMAL WONOSARI</option>
-                            <option>SDN KARANGREJEK I WONOSARI</option>
-                            <option>SDN KARANGREJEK II WONOSARI</option>
-                            <option>SDN KARANGTENGAH BARU WONOSARI</option>
-                            <option>SDN KARANGTENGAH III WONOSARI</option>
-                            <option>SDN KARANGTENGAH IV WONOSARI</option>
-                            <option>SDN MULO II WONOSARI</option>
-                            <option>SDN MULOBARU WONOSARI</option>
-                            <option>SDN PIYAMAN I WONOSARI</option>
-                            <option>SDN PIYAMAN II WONOSARI</option>
-                            <option>SDN PIYAMAN III WONOSARI</option>
-                            <option>SDN SELANG WONOSARI</option>
-                            <option>SDN SENENG WONOSARI</option>
-                            <option>SDN SINGKAR WONOSARI</option>
-                            <option>SDN SIRAMAN I WONOSARI</option>
-                            <option>SDN SIRAMAN II WONOSARI</option>
-                            <option>SDN SIRAMAN III WONOSARI</option>
-                            <option>SDN SOKA WONOSARI</option>
-                            <option>SDN WONOSARI BARU WONOSARI</option>
-                            <option>SDN WONOSARI I WONOSARI</option>
-                            <option>SDN WONOSARI II WONOSARI</option>
-                            <option>SDN WONOSARI IV WONOSARI</option>
-                            <option>SDN WONOSARI VI WONOSARI</option>
-                            <option>SD BOPKRI WONOSARI II</option>
-                            <option>SD ISLAM AL AZHAR 59 WONOSARI</option>
-                            <option>SD IT TUNAS MULIA WONOSARI</option>
-                            <option>SD KANISIUS PULUTAN WONOSARI</option>
-                            <option>SD KANISIUS WONOSARI II WONOSARI</option>
-                            <option>SD MUHAMMADIYAH AL MUJAHIDIN WONOSARI</option>
-                            <option>SD MUHAMMADIYAH KARANGTENGAH WONOSARI</option>
-                            <option>SD MUHAMMADIYAH PIYAMAN WONOSARI</option>
-                            <option>SD MUHAMMADIYAH SIRAMAN WONOSARI</option>
-                            <option>SD MUHAMMADIYAH WARENG WONOSARI</option>
-                            <option>SD MUHAMMADIYAH WONOSARI</option>
-                        </select>
-                        <label for="signature" class="block mb-1 text-sm font-medium text-gray-300">Tanda Tangan</label>
-                        <canvas id="signature" class="w-full h-32 bg-white rounded-lg border border-gray-600 mb-2"></canvas>
-                        <button type="button" onclick="clearSignature()" class="w-full text-center text-sm text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg p-2 mb-4 transition-colors">Hapus Tanda Tangan</button>
-                        <label for="fotoSelfie" class="block mb-1 text-sm font-medium text-gray-300">Upload Foto Selfie</label>
-                        <input type="file" id="fotoSelfie" accept="image/*" required class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-pink-500 file:text-white hover:file:bg-pink-600 mb-4 cursor-pointer" />
-                    </div>
-                    <div class="mt-auto">
-                        <button type="submit" class="w-full text-white bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-800 font-bold rounded-lg text-sm px-5 py-3 text-center uppercase tracking-wider transition-all duration-300">Kirim Kehadiran</button>
-                    </div>
-                </form>
-            </div>
-    
-            <div id="rekap" class="w-full lg:w-6/10 p-6 md:p-8 bg-gradient-to-br from-orange-500 to-pink-600 text-white flex flex-col">
-                <h3 class="text-2xl lg:text-3xl font-bold text-center mb-6">Data Kehadiran</h3>
-                <div class="relative overflow-auto shadow-md rounded-lg bg-white/10 backdrop-blur-sm flex-grow">
-                    <table id="tabelRekap" class="w-full text-sm text-left">
-                        <thead class="text-xs uppercase bg-white/20 sticky top-0">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">Waktu</th>
-                                <th scope="col" class="px-6 py-3">Nama</th>
-                                <th scope="col" class="px-6 py-3">Sekolah</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
-    
-        <div id="foto-slider-container" class="mt-8 max-w-7xl w-full mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 border border-gray-700">
-            <h3 class="text-xl font-bold text-white mb-4 text-center">Galeri Foto Kehadiran</h3>
-            <div id="foto-slider" class="overflow-x-auto whitespace-nowrap pb-2">
-                </div>
-        </div>
-    
-        <div id="popup-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-            <div class="bg-gray-700 rounded-2xl shadow-xl w-full max-w-md p-6 text-center border border-gray-600">
-                <h3 id="popup-title" class="text-2xl font-bold text-white mb-2"></h3>
-                <p id="popup-message" class="text-gray-300 mb-6"></p>
-                <button onclick="hidePopup()" class="bg-pink-600 text-white font-bold rounded-lg text-sm px-8 py-2.5 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-800">Tutup</button>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLDIt7--vJiDjDyfJoRu-uJ0SkainjpRCIKm1wxaP2ZMqTvV4B5edG3zgwFxODnfWK7Q/exec";
-
-        const canvas = document.getElementById("signature");
-        const ctx = canvas.getContext("2d");
-        let drawing = false;
-
-        window.addEventListener("load", resizeCanvas);
-        window.addEventListener("resize", resizeCanvas);
-        function resizeCanvas() { const ratio = Math.max(window.devicePixelRatio || 1, 1); canvas.width = canvas.offsetWidth * ratio; canvas.height = canvas.offsetHeight * ratio; canvas.getContext("2d").scale(ratio, ratio); }
-
-        function filterSekolah() { const input = document.getElementById("searchSekolah"), filter = input.value.toUpperCase(), select = document.getElementById("sekolah"), options = select.getElementsByTagName("option"); for (let i = 0; i < options.length; i++) { const txtValue = options[i].textContent || options[i].innerText; if (options[i].value === "") { options[i].style.display = ""; } else if (txtValue.toUpperCase().indexOf(filter) > -1) { options[i].style.display = ""; } else { options[i].style.display = "none"; } } }
-        
-        canvas.addEventListener("mousedown", start); canvas.addEventListener("mouseup", end); canvas.addEventListener("mousemove", draw); canvas.addEventListener("touchstart", start, { passive: false }); canvas.addEventListener("touchend", end, { passive: false }); canvas.addEventListener("touchmove", draw, { passive: false });
-        function start(e) { drawing = true; ctx.beginPath(); ctx.moveTo(getX(e), getY(e)); e.preventDefault(); }
-        function end(e) { drawing = false; e.preventDefault(); }
-        function draw(e) { if (!drawing) return; ctx.lineWidth = 2; ctx.lineCap = "round"; ctx.strokeStyle = "#000"; ctx.lineTo(getX(e), getY(e)); ctx.stroke(); e.preventDefault(); }
-        function getX(e) { const rect = canvas.getBoundingClientRect(), scaleX = canvas.width / (rect.width * window.devicePixelRatio), clientX = e.touches ? e.touches[0].clientX : e.clientX; return (clientX - rect.left) * scaleX; }
-        function getY(e) { const rect = canvas.getBoundingClientRect(), scaleY = canvas.height / (rect.height * window.devicePixelRatio), clientY = e.touches ? e.touches[0].clientY : e.clientY; return (clientY - rect.top) * scaleY; }
-        function clearSignature() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
-
-        function showPopup(title, message) { document.getElementById('popup-title').textContent = title; document.getElementById('popup-message').textContent = message; document.getElementById('popup-modal').classList.remove('hidden'); }
-        function hidePopup() { document.getElementById('popup-modal').classList.add('hidden'); }
-
-        document.getElementById("form").addEventListener("submit", async function (e) {
-            e.preventDefault();
-            const nama = this.nama.value; const sekolah = this.sekolah.value; const tanda_tangan = canvas.toDataURL("image/png"); const fileInput = document.getElementById("fotoSelfie"); const file = fileInput.files[0];
-            if (!ctx.getImageData(0, 0, canvas.width, canvas.height).data.some((channel) => channel !== 0)) { showPopup("Perhatian!", "Tanda tangan tidak boleh kosong."); return; }
-            const reader = new FileReader();
-            reader.onloadend = function () {
-                const foto_selfie = reader.result;
-                fetch(GOOGLE_SCRIPT_URL, { method: "POST", body: JSON.stringify({ nama, sekolah, tanda_tangan, foto_selfie }), })
-                .then((res) => res.json())
-                .then((data) => {
-                    showPopup("Berhasil!", data.message || "Kehadiran berhasil dikirim!");
-                    clearSignature(); document.getElementById("form").reset(); filterSekolah(); loadRekap();
-                })
-                .catch((err) => {
-                    showPopup("Terjadi Kesalahan", "Gagal mengirim data. Silakan coba lagi."); console.error(err);
-                });
-            };
-            reader.readAsDataURL(file);
-        });
-
-        function loadRekap() {
-            fetch(`${GOOGLE_SCRIPT_URL}?v=${new Date().getTime()}`)
-            .then((res) => res.json())
-            .then((data) => {
-                const tbody = document.querySelector("#tabelRekap tbody");
-                const fotoSlider = document.getElementById('foto-slider');
-                tbody.innerHTML = "";
-                fotoSlider.innerHTML = "";
-                if (data && Array.isArray(data)) {
-                    data.slice().reverse().forEach((row) => {
-                        const tr = document.createElement("tr");
-                        tr.className = "border-b border-gray-700 hover:bg-white/5";
-                        tr.innerHTML = `<td class="px-6 py-4">${new Date(row["Timestamp"]).toLocaleString("id-ID", {dateStyle:'short', timeStyle:'short'})}</td><td class="px-6 py-4 font-medium whitespace-nowrap">${row["Nama Lengkap"]}</td><td class="px-6 py-4">${row["Asal Sekolah"]}</td>`;
-                        tbody.appendChild(tr);
-
-                        if (row["Foto Selfie"] && typeof row["Foto Selfie"] === 'string' && row["Foto Selfie"].startsWith('http')) {
-                            const imgContainer = document.createElement('div');
-                            imgContainer.className = 'inline-block mr-4 rounded-lg overflow-hidden shadow-lg h-32 w-32 flex-shrink-0';
-                            const img = document.createElement('img');
-                            img.src = row["Foto Selfie"].replace("?usp=drivesdk",""); // Membersihkan URL jika perlu
-                            img.alt = `Foto ${row["Nama Lengkap"]}`;
-                            img.className = 'h-full w-full object-cover';
-                            imgContainer.appendChild(img);
-                            fotoSlider.appendChild(imgContainer);
-                        }
-                    });
-                }
-            })
-            .catch((err) => {
-                console.error("Gagal memuat data rekap:", err);
-                const tbody = document.querySelector("#tabelRekap tbody");
-                tbody.innerHTML = `<tr><td colspan="3" class="text-center p-4">Gagal memuat data.</td></tr>`;
-            });
-        }
-        loadRekap();
-    </script>
-</body>
 </html>
